@@ -127,6 +127,11 @@ const void *const kLatestSenderKey = &kLatestSenderKey;
         if ([systemVersion compare:@"10.0" options:NSNumericSearch] != NSOrderedAscending) {
             [whitelist addObject:@"UISwitch"];
         }
+        
+        // FIXME:通过继承UITextField自定了一个textfield，在iOS11以下可以正常使用，在iOS11使用的时候无法释放，解决办法:将UITextField加入白名单
+        if ([systemVersion compare:@"11.0" options:NSNumericSearch] != NSOrderedAscending) {
+            [whitelist addObject:@"UITextField"];
+        }
     });
     return whitelist;
 }
